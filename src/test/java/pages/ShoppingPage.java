@@ -46,9 +46,26 @@ public class ShoppingPage extends BasePage {
                 System.out.println("Texto del diálogo: " + dialog.message());
                 dialog.accept(); // Aceptar el diálogo
             });
-            click("//a[@id='cartur']");
-            click("//button[normalize-space()='Place Order']");
+
         }
+    }
+
+    public void iConfirmThePurchase() {
+        click("//a[@id='cartur']");
+        click("//button[normalize-space()='Place Order']");
+        type("input#name", "Luis Miguel Campos Navarro");
+        type("input#country", "Peru");
+        type("input#city", "Ica");
+        type("input#card", "4111111111111111");
+        type("input#month", "12");
+        type("input#year", "26");
+        click("div#orderModal > div[role='document'] .btn.btn-primary");
+    }
+
+    public void iShouldSeeTheConfirmationMessage(String Message) {
+        String mensaje = getText(".showSweetAlert.sweet-alert.visible > h2");
+        Assert(mensaje, Message);
+        click(".btn.btn-lg.btn-primary.confirm");
     }
 
 }

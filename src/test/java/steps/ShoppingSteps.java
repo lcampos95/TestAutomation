@@ -22,9 +22,9 @@ public class ShoppingSteps {
         browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
         // Crear un contexto con grabación de video
         // Resolución Full HD
-        context = BasePage.createContextWithVideo(browser, "videos/");
         context = browser.newContext(new Browser.NewContextOptions()
                 .setViewportSize(1920, 1080));
+        context = BasePage.createContextWithVideo(browser, "videos/");
         page = context.newPage();
 
 
@@ -43,10 +43,14 @@ public class ShoppingSteps {
 
     }
 
-    @Then("I should see results containing {string}")
-    public void iShouldSeeResultsContaining(String keyword) {
-        Assertions.assertTrue(shoppingPage.containsResult(keyword));
-        // Cerrar navegador y detener grabación
+    @And("I confirm the purchase")
+    public void iConfirmThePurchase() {
+        shoppingPage.iConfirmThePurchase();
+    }
+
+    @Then("I should see the confirmation message {string}")
+    public void iShouldSeeTheConfirmationMessage(String Message) {
+        shoppingPage.iShouldSeeTheConfirmationMessage(Message);
         browser.close();
         playwright.close();
     }

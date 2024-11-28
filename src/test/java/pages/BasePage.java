@@ -1,6 +1,7 @@
 package pages;
 
 import com.microsoft.playwright.*;
+import org.junit.jupiter.api.Assertions;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -61,4 +62,9 @@ public class BasePage {
     public String getText(String selector) {
         return page.locator(selector).textContent();
     }
+
+    public void Assert(String gettext, String expectedMessage) {
+        Assertions.assertEquals(gettext, expectedMessage);
+    }
+
 }

@@ -6,4 +6,6 @@ Feature: Shopping Cart Functionality
     And I add the following items to the cart:
       | Category | Product Name      |
       | Phones   | Samsung galaxy s6 |
-    Then I should see results containing "Playwright"
+    And I confirm the purchase
+    Then I should see the confirmation message "Thank you for your purchase!"
+
