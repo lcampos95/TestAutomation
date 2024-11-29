@@ -2,8 +2,11 @@ package steps;
 
 import com.microsoft.playwright.*;
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.en.*;
-import org.junit.jupiter.api.Assertions;
+//import io.cucumber.java.en.*;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import pages.BasePage;
 import pages.ShoppingPage;
 
@@ -48,10 +51,19 @@ public class ShoppingSteps {
         shoppingPage.iConfirmThePurchase();
     }
 
+    @Then("I do not confirm the purchase {string}")
+    public void iDoNotConfirmThePurchase(String mesasage) {
+        shoppingPage.iDoNotConfirmThePurchase(mesasage);
+        browser.close();
+        playwright.close();
+    }
+
     @Then("I should see the confirmation message {string}")
     public void iShouldSeeTheConfirmationMessage(String Message) {
         shoppingPage.iShouldSeeTheConfirmationMessage(Message);
         browser.close();
         playwright.close();
     }
+
+
 }

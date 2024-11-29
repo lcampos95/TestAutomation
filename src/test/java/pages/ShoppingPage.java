@@ -68,4 +68,16 @@ public class ShoppingPage extends BasePage {
         click(".btn.btn-lg.btn-primary.confirm");
     }
 
+    public void iDoNotConfirmThePurchase(String message) {
+        click("//a[@id='cartur']");
+        click("//button[normalize-space()='Place Order']");
+        click("div#orderModal > div[role='document'] .btn.btn-primary");
+        page.onDialog(dialog -> {
+            System.out.println("Texto del diálogo: " + dialog.message());
+            String Message = dialog.message();
+            dialog.accept(); // Aceptar el diálogo
+            Assert(Message, message);
+        });
+    }
+
 }
