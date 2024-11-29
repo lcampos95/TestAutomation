@@ -1,8 +1,9 @@
 package pages;
 
 import com.microsoft.playwright.*;
+import org.junit.jupiter.api.Assertions;
+
 import java.nio.file.Paths;
-import java.util.List;
 
 public class BasePage {
     protected Page page;
@@ -14,9 +15,7 @@ public class BasePage {
 
 
     public static BrowserContext createContextWithVideo(Browser browser, String videoPath) {
-        return browser.newContext(new Browser.NewContextOptions()
-                .setRecordVideoDir(Paths.get(videoPath))
-                .setRecordVideoSize(1920, 1080)); // Ajusta el tamaño si es necesario
+        return browser.newContext(new Browser.NewContextOptions().setRecordVideoDir(Paths.get(videoPath)).setRecordVideoSize(1920, 1080)); // Ajusta el tamaño si es necesario
     }
 
     public void navigateTo(String url) {
@@ -28,20 +27,6 @@ public class BasePage {
     }
 
 
-    public void selectElementByText(List<ElementHandle> elements, String visibleText) {
-        for (ElementHandle element : elements) {
-            System.out.println(element);
-            System.out.println(element.innerText());
-            System.out.println(element.asElement());
-            System.out.println(element.getAttribute("onclick"));
-            if (element.innerText().contains(visibleText)) {
-                System.out.println(element);
-                element.click();
-                return;
-            }
-        }
-        throw new RuntimeException("No se encontró un elemento con el texto: " + visibleText);
-    }
 
     public void type(String selector, String text) {
         page.locator(selector).fill(text);
@@ -52,7 +37,7 @@ public class BasePage {
     }
 
     public void Assert(String gettext, String expectedMessage) {
-        //Assertions.assertEquals(gettext, expectedMessage);
+        Assertions.assertEquals(gettext, expectedMessage);
     }
 
 }

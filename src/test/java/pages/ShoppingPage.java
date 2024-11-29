@@ -22,9 +22,6 @@ public class ShoppingPage extends BasePage {
         click("div#logInModal > div[role='document'] .btn.btn-primary");
     }
 
-    public boolean containsResult(String keyword) {
-        return page.locator("#search").textContent().contains(keyword);
-    }
 
     public void iAddTheFollowingItemsToTheCart(DataTable dataTable) {
         List<Map<String, String>> items = dataTable.asMaps(String.class, String.class);

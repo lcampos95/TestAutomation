@@ -2,7 +2,6 @@ package steps;
 
 import com.microsoft.playwright.*;
 import io.cucumber.datatable.DataTable;
-//import io.cucumber.java.en.*;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -10,7 +9,6 @@ import io.cucumber.java.en.When;
 import pages.BasePage;
 import pages.ShoppingPage;
 
-import java.util.Arrays;
 
 public class ShoppingSteps {
     private static Playwright playwright;
@@ -23,8 +21,6 @@ public class ShoppingSteps {
     public void iOpenTheGoogleHomepage(String url) {
         playwright = Playwright.create();
         browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
-        // Crear un contexto con grabación de video
-        // Resolución Full HD
         context = browser.newContext(new Browser.NewContextOptions()
                 .setViewportSize(1920, 1080));
         context = BasePage.createContextWithVideo(browser, "videos/");
